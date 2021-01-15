@@ -1,34 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" conten="ie=edge">
-    <link href="styles2.css" rel="stylesheet">
-    <title>JA Golf Quiz</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script defer src="apps3.js"></script>
+<head lang="en">
+  <meta charset="UTF-8">
+  <link href="styles.css" rel="stylesheet">
+  <title>JA Golf Quiz</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script defer src="app2.js"></script>
+</head>  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
 <body>
 
-<div class="container">
-    <div id="question-container" class="hide">
-      <div id="question">Question</div>
-      <div id="answer-buttons" class="btn-grid">
-        <button class="btn">Answer 1</button>
-        <button class="btn">Answer 2</button>
-        <button class="btn">Answer 3</button>
-        <button class="btn">Answer 4</button>
-      </div>
-    </div>
-    <div class="controls">
-      <button id="start-btn" class="start-btn btn">Start</button>
-      <button id="next-btn" class="next-btn btn hide">Next</button>
+  <div class="grid">
+    <div id="golfQuiz" class="centered grid__col--8">
+      <h1>Golf Quiz</h1>
+      <h2 id="question" class="headline-secondary--grouped"></h2>
+      <h3 id="score"></h3>
+      <p id="choice0"></p>
+      <button id="guess0" class="btn--default">Select Answer</button>
+      <p id="choice1"></p>
+      <button id="guess1" class="btn--default">Select Answer</button>
+      <p id="choice2"></p>
+      <button id="guess2" class="btn--default">Select Answer</button>      
+      <p id="choice3"></p>
+      <button id="guess3" class="btn--default">Select Answer</button>
+      <footer>
+      </footer>
     </div>
   </div>
-
 
 </body>
 

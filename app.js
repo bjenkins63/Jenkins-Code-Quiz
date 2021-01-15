@@ -1,107 +1,93 @@
-const startButton = document.getElementById('start-btn')
-const nextButton = document.getElementById('next-btn')
-const questionContainerElement = document.getElementById('question-container')
-const questionElement = document.getElementById('question')
-const answerButtonsElement = document.getElementById('answer-buttons')
-
-let shuffledQuestions, currentQuestionIndex
-
-startButton.addEventListener('click', startGame)
-nextButton.addEventListener('click', () => {
-  currentQuestionIndex++
-  setNextQuestion()
-})
-
-function startGame() {
-  startButton.classList.add('hide')
-  shuffledQuestions = questions.sort(() => Math.random() - .5)
-  currentQuestionIndex = 0
-  questionContainerElement.classList.remove('hide')
-  setNextQuestion()
+function golfQuiz(questions) {
+  this.questions = questions;
+  this.score = 0;
+  this.currentQuestionIndex = 0;
 }
 
-function setNextQuestion() {
-  resetState()
-  showQuestion(shuffledQuestions[currentQuestionIndex])
+golfQuiz.prototype.getCurrentQuestion = function() {
+  return this.questions[this.currentQuestionIndex];
 }
 
-function showQuestion(question) {
-  questionElement.innerText = question.question
-  question.answers.forEach(answer => {
-    const button = document.createElement('button')
-    button.innerText = answer.text
-    button.classList.add('btn')
-    if (answer.correct) {
-      button.dataset.correct = answer.correct
-    }
-    button.addEventListener('click', selectAnswer)
-    answerButtonsElement.appendChild(button)
-  })
+golfQuiz.prototype.nextQuestion = function() {
+  this.currentQuestionIndex++;
 }
 
-function resetState() {
-  clearStatusClass(document.body)
-  nextButton.classList.add('hide')
-  while (answerButtonsElement.firstChild) {
-    answerButtonsElement.removeChild(answerButtonsElement.firstChild)
+golfQuiz.prototype.hasEnded = function() {
+  if (this.currentQuestionIndex === this.questions.length)
+    return true;
+}
+
+golfQuiz.prototype.guess = function(guess) {
+  var currentQuestion = this.questions[this.currentQuestionIndex];
+  if (currentQuestion.isCorrect(guess)) {
+    this.score++;
   }
+  this.nextQuestion();
 }
 
-function selectAnswer(e) {
-  const selectedButton = e.target
-  const correct = selectedButton.dataset.correct
-  setStatusClass(document.body, correct)
-  Array.from(answerButtonsElement.children).forEach(button => {
-    setStatusClass(button, button.dataset.correct)
-  })
-  if (shuffledQuestions.length > currentQuestionIndex + 1) {
-    nextButton.classList.remove('hide')
-  } else {
-    startButton.innerText = 'Restart'
-    startButton.classList.remove('hide')
-  }
+// Define question object
+function Question(question, choices, correct) {
+  this.question = question;
+  this.choices = choices;
+  this.correct = correct;
+};
+
+Question.prototype.isCorrect = function(guess) {
+  if (guess === this.correct)
+    return true;
+};
+
+var QuizUI = {
+	displayNext : function(){
+		if (golfQuiz.hasEnded())
+			this.displayScore();
+		else{
+			this.displayQuestion();
+			this.displayChoices();
+			this.displayProgress();
+		}
+
+	},
+	displayQuestion: function(){
+		var question = golfQuiz.getCurrentQuestion().question;
+		this.setText("question",question);
+	},
+	displayChoices: function(){
+		var choices = golfQuiz.getCurrentQuestion().choices;
+		for (var i = 0 ; i < choices.length; i++){
+			this.setText("choice"+i , choices[i]);
+			this.guessHandler("guess"+i,i);
+		}
+	},
+	displayScore : function(){
+		var gameOverHTML = "<h1>Game Over</h1>";
+        gameOverHTML += "<h2> Your score is: " + quiz.score + "</h2>";
+        this.setText("quiz", gameOverHTML);
+	},
+	setText: function(id,text){
+		var element= document.getElementById(id);
+		// innerHTML is a property, not function
+		element.innerHTML = text;
+	},
+	
+	guessHandler : function(id,guess){
+
+		var choiceButton = document.getElementById(id);
+		choiceButton.onclick = function(){
+
+			golfQuiz.guess(guess);
+			QuizUI.displayNext();
+		}
+	}
 }
-
-function setStatusClass(element, correct) {
-  clearStatusClass(element)
-  if (correct) {
-    element.classList.add('correct')
-  } else {
-    element.classList.add('wrong')
-  }
-}
-
-function clearStatusClass(element) {
-  element.classList.remove('correct')
-  element.classList.remove('wrong')
-}
+var question1 = new Question("Who is the Greatest Golfer of all time?", ["Jack Nicklas", "Tiger Woods", "Brian Jenkins", "Brad Faxon"], 0);
+var question2 = new Question("Where is The Masters held?", ["Scotland", "Ireland", "Texas", "Georgia"], 3);
+var question3 = new Question("How many Major tournaments are there?", ["7", "12", "4", "2"], 2);
+var question4 = new Question("something else?", ["Scotland", "Ireland", "Texas", "Georgia"], 0);
+var question5 = new Question("last question?", ["Scotland", "Ireland", "Texas", "Georgia"], 2);
 
 
-const questions = [
-    {
-    question: 'Who is the best golfer?',
-    answers: [
-    { text: 'Arnold Palmer', correct: true },
-    { text: 'Tiger Woods', correct: false },
-    { text: 'Brian Jenkins', correct: false },
-    { text: 'Brad Faxon', correct: false },
-    ]
-    },
-    {
-    question: 'Where is Pebble Beach?',
-    answers: [
-    { text: 'Florida', correct: false },
-    { text: 'Wisconsin', correct: false },
-    { text: 'California', correct: true },
-    { text: 'Texas', correct: false },
-    ]},
-
-    {question: 'When is The Masters?',
-    answers: [
-    { text: 'April', correct: true },
-    { text: 'June', correct: false },
-    { text: 'December', correct: false },
-    { text: 'May', correct: false }
-    ]
-}
-]
+var golfQuiz = new golfQuiz(
+  [question1, question2, question3, question4, question5]
+);
+QuizUI.displayNext();
