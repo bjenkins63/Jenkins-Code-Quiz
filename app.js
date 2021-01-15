@@ -4,6 +4,17 @@ function golfQuiz(questions) {
   this.currentQuestionIndex = 0;
 }
 
+function timeout() {
+    setInterval(function(){
+     if(timeLeft <=0 ) {
+        showResult();
+        clearInterval(timeLeft = 0)
+     }
+     timeLeftDisplay.innerHTML = timeLeft   
+     timeLeft -=1;
+    }, 1000)
+}
+
 golfQuiz.prototype.getCurrentQuestion = function() {
   return this.questions[this.currentQuestionIndex];
 }
@@ -37,17 +48,16 @@ Question.prototype.isCorrect = function(guess) {
     return true;
 };
 
-var QuizUI = {
+var golfQuizUI = {
 	displayNext : function(){
 		if (golfQuiz.hasEnded())
 			this.displayScore();
 		else{
 			this.displayQuestion();
 			this.displayChoices();
-			this.displayProgress();
-		}
+	}
+},
 
-	},
 	displayQuestion: function(){
 		var question = golfQuiz.getCurrentQuestion().question;
 		this.setText("question",question);
@@ -76,7 +86,7 @@ var QuizUI = {
 		choiceButton.onclick = function(){
 
 			golfQuiz.guess(guess);
-			QuizUI.displayNext();
+			golfQuizUI.displayNext();
 		}
 	}
 }
@@ -86,8 +96,16 @@ var question3 = new Question("How many Major tournaments are there?", ["7", "12"
 var question4 = new Question("something else?", ["Scotland", "Ireland", "Texas", "Georgia"], 0);
 var question5 = new Question("last question?", ["Scotland", "Ireland", "Texas", "Georgia"], 2);
 
+//scoreText = game.add.text(5, 5, 'Points: 0', { font: '18px Arial', fill: '#0095DD' });
+
+//function correctAnswer() {
+//	currentQuestion.isCorrect();
+//	Score += 5;
+//	scoreText.setText('Points: '+Score);
+//}
+
 
 var golfQuiz = new golfQuiz(
   [question1, question2, question3, question4, question5]
 );
-QuizUI.displayNext();
+golfQuizUI.displayNext();
