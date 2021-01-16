@@ -2,12 +2,13 @@
 body {
     padding: 0;
     margin: 0;
+    color: rgb(206, 202, 144);
     display: flex;
     width: 100vw;
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: hsl(var(--hue), 100%, 20%);
+    background-color: lightskyblue;
 }
 
 .container {
@@ -28,6 +29,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.scoreBox,
+.timerBox {
+    border-radius: 100px;
+    float: center;
+    width: 15%;
+    padding: 10px 15px;
+    border: 1px solid #444;
+    color:rgb(248, 239, 239);
 }
 
 .look {
@@ -51,7 +62,7 @@ body {
     text-align: center;
     size: 18px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    font-size: 2em;
+    font-size: 1em;
     margin: 0.67em 0;
 }
 
