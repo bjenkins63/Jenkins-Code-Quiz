@@ -5,7 +5,6 @@ body {
     align-items: center;
     background-color: rgb(152, 194, 221);
 }
-
 .gameName {
     font-size: 300%;
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
@@ -32,8 +31,6 @@ body {
     align-items: center;
     
 }
-
-
 .scoreBox,
 .timerBox {
     border-radius: 10px;
