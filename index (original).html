@@ -1,0 +1,89 @@
+<html>
+
+<head lang="en">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="styles.css" rel="stylesheet">
+  <title>JA Golf Quiz</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script defer src="app.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+
+  <div class="container">
+    <div class="jumbotron">
+      
+      <div class="gameName">Golf Quiz</div>
+        
+   <!--      <div class="header">  -->
+          <div class="scoreBox"><h1>Score: 0</h1>
+
+        <button  id= "gameStart" class="btn"><h1>Tee Off!</h1></button>
+            <div id= "countdown"></div>
+
+            <div class="timer">
+          </div>
+          <div class="time_line"></div>
+
+      <h2 id="question" class="headline-question"></h2>
+
+      <p id="choice0" class="look"></p>
+      <button id="guess0" class="btn">SELECT</button>
+
+      <p id="choice1" class="look"></p>
+      <button id="guess1" class="btn">SELECT</button>
+
+      <p id="choice2" class="look"></p>
+      <button id="guess2" class="btn">SELECT</button>  
+
+      <p id="choice3" class="look"></p>
+      <button id="guess3" class="btn">SELECT</button>
+        </div>
+
+      <footer>
+        <div class="total_que">
+            <!-- Here I've inserted Question Count Number from JavaScript -->
+        </div>
+    </footer>
+</div>
+</div>
+
+      
+
+    <!-- Result Box -->
+    <div class="result_box">
+      <div class="icon">
+          <i class="fas fa-crown"></i>
+      </div>
+      <div class="complete_text">You've completed the Quiz!</div>
+      <div class="score_text">
+          <!-- Here I've inserted Score Result from JavaScript -->
+      </div>
+      <div class="buttons">
+          <button class="restart">Replay Quiz</button>
+          <button class="quit">Quit Quiz</button>
+      </div>
+  </div>
+ <!--   </div>
+
+    <div class="container">
+    <form action="/action_page.php">
+      <label for="fname">First name:</label><br>
+      <input type="text" id="fname" name="fname" value="John"><br>
+      <label for="lname">Last name:</label><br>
+      <input type="text" id="lname" name="lname" value="Doe"><br><br>
+      <input type="submit" class="btn btn-warning" value="Submit">
+      <input type="reset">
+    </form> 
+
+    -->
+
+  </div>
+
+</body>
+
+</html>
