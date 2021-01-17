@@ -16,30 +16,72 @@
 
   <div class="container">
     <div class="jumbotron">
-      <div class="h1-title"></h1>Golf Quiz</h1>
-        <br>
-        <div id= "startButtons">
-          <button  id= "gameStart">Get Going!</button>
-        </div>
-        <div id= "countdown"></div>
+      
+      <div class="gameName">Golf Quiz</div>
         
-        <div class="header">
-          <div class="scoreBox">Score: 0</div>
-          <div class="timerBox">Time left: </div>
-        </div>
+   <!--      <div class="header">  -->
+          <div class="scoreBox"><h1>Score: 0</h1>
+
+        <button  id= "gameStart" class="btn"><h1>Tee Off!</h1></button>
+            <div id= "countdown"></div>
+
+            <div class="timer">
+          </div>
+          <div class="time_line"></div>
+
       <h2 id="question" class="headline-question"></h2>
-      <h3 id="score"></h3>
+
       <p id="choice0" class="look"></p>
       <button id="guess0" class="btn">SELECT</button>
+
       <p id="choice1" class="look"></p>
       <button id="guess1" class="btn">SELECT</button>
+
       <p id="choice2" class="look"></p>
-      <button id="guess2" class="btn">SELECT</button>      
+      <button id="guess2" class="btn">SELECT</button>  
+
       <p id="choice3" class="look"></p>
       <button id="guess3" class="btn">SELECT</button>
+        </div>
+
       <footer>
-      </footer>
-    </div>
+        <div class="total_que">
+            <!-- Here I've inserted Question Count Number from JavaScript -->
+        </div>
+    </footer>
+</div>
+</div>
+
+      
+
+    <!-- Result Box -->
+    <div class="result_box">
+      <div class="icon">
+          <i class="fas fa-crown"></i>
+      </div>
+      <div class="complete_text">You've completed the Quiz!</div>
+      <div class="score_text">
+          <!-- Here I've inserted Score Result from JavaScript -->
+      </div>
+      <div class="buttons">
+          <button class="restart">Replay Quiz</button>
+          <button class="quit">Quit Quiz</button>
+      </div>
+  </div>
+ <!--   </div>
+
+    <div class="container">
+    <form action="/action_page.php">
+      <label for="fname">First name:</label><br>
+      <input type="text" id="fname" name="fname" value="John"><br>
+      <label for="lname">Last name:</label><br>
+      <input type="text" id="lname" name="lname" value="Doe"><br><br>
+      <input type="submit" class="btn btn-warning" value="Submit">
+      <input type="reset">
+    </form> 
+
+    -->
+
   </div>
 
 </body>

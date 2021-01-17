@@ -54,13 +54,13 @@ golfQuiz.prototype.guess = function(guess) {
 }
 
 // Define question object
-function Question(question, choices, correct) {
+function _question(question, choices, correct) {
   this.question = question;
   this.choices = choices;
   this.correct = correct;
 };
 
-Question.prototype.isCorrect = function(guess) {
+_question.prototype.isCorrect = function(guess) {
   if (guess === this.correct)
     return true;
 };
@@ -90,14 +90,15 @@ var golfQuizUI = {
 		var gameOverHTML = "<h1>Game Over</h1>";
         gameOverHTML += "<h2> Your score is: " + quiz.score + "</h2>";
         this.setText("quiz", gameOverHTML);
-	},
-	setText: function(id,text){
-		var element= document.getElementById(id);
+  },
+  
+	setText: function(id, text) {
+		var element = document.getElementById(id);
 		// innerHTML is a property, not function
 		element.innerHTML = text;
 	},
 	
-	guessHandler : function(id,guess){
+	guessHandler : function(id, guess){
 
 		var choiceButton = document.getElementById(id);
 		choiceButton.onclick = function(){
@@ -107,11 +108,11 @@ var golfQuizUI = {
 		}
 	}
 }
-var question1 = new Question("Who is the Greatest Golfer of all time?", ["Jack Nicklas", "Tiger Woods", "Brian Jenkins", "Brad Faxon"], 0);
-var question2 = new Question("Where is The Masters held?", ["Scotland", "Ireland", "Texas", "Georgia"], 3);
-var question3 = new Question("How many Major tournaments are there?", ["7", "12", "4", "2"], 2);
-var question4 = new Question("something else?", ["Scotland", "Ireland", "Texas", "Georgia"], 0);
-var question5 = new Question("last question?", ["Scotland", "Ireland", "Texas", "Georgia"], 2);
+var question1 = new _question("Who is the Greatest Golfer of all time?", ["Jack Nicklas", "Tiger Woods", "Brian Jenkins", "Brad Faxon"], 0);
+var question2 = new _question("Where is The Masters held?", ["Scotland", "Ireland", "Texas", "Georgia"], 3);
+var question3 = new _question("How many Major tournaments are there?", ["7", "12", "4", "2"], 2);
+var question4 = new _question("something else?", ["Scotland", "Ireland", "Texas", "Georgia"], 0);
+var question5 = new _question("last question?", ["Scotland", "Ireland", "Texas", "Georgia"], 2);
 
 //scoreText = game.add.text(5, 5, 'Points: 0', { font: '18px Arial', fill: '#0095DD' });
 
@@ -126,3 +127,9 @@ var golfQuiz = new golfQuiz(
   [question1, question2, question3, question4, question5]
 );
 golfQuizUI.displayNext();
+
+function queCounter(index){
+  //creating a new span tag and passing the question number and total question
+  let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
+  bottom_ques_counter.innerHTML = totalQueCounTag;  //adding new span tag inside bottom_ques_counter
+}
