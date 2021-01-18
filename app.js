@@ -1,135 +1,260 @@
-function golfQuiz(questions) {
-  this.questions = questions;
-  this.score = 0;
-  this.currentQuestionIndex = 0;
-}
+var q = ["What is the term Albatross mean in golf?", "Tiger Wood studied at which college?", 
+          "What is 2 over par on a hole called?<br /><br />", "Where is The Masters tournament played?<br /><br />", 
+          "How many major tournament titles does Jack Nicklas have?<br /><br />"];
 
-function timeout() {
-    setInterval(function(){
-     if(timeLeft <=0 ) {
-        showResult();
-        clearInterval(timeLeft = 0)
-     }
-     timeLeftDisplay.innerHTML = timeLeft   
-     timeLeft -=1;
-    }, 1000)
-}
+var a1 = ["<button class=buttons002 onclick=q1i()>A flock of birds</button>",
+  "<button class=buttons002 onclick=q1c()>A 2 on a par 5</button>",
+  "<button class=buttons002 onclick=q1i()>A dogleg left</button>",
+  "<button class=buttons002 onclick=q1i()>A poor golfer</button>", ,
+];
 
-document.getElementById("gameStart").addEventListener("click", function(){
-    var timeleft = 15;
+var a2 = ["<button class=buttons002 onclick=q1i()>Dartmouth</button>",
+  "<button class=buttons002 onclick=q2i()>Duke</button>",
+  "<button class=buttons002 onclick=q3c()>Stanford</button>",
+  "<button class=buttons002 onclick=q4i()>Keene State</button>"
+];
 
-    var downloadTimer = setInterval(function function1(){
-    document.getElementById("countdown").innerHTML = timeleft + 
-    "&nbsp"+"seconds remaining";
+var a3 = ["<button class=buttons002 onclick=q1i()>Disqualified</button>",
+  "<button class=buttons002 onclick=q2i()>Out of bounds</button>",
+  "<button class=buttons002 onclick=q3c()>A double bogey</button>",
+  "<button class=buttons002 onclick=q4i()>A penalty</button>"
+];
 
-    timeleft -= 1;
-    if(timeleft <= 0){
-        clearInterval(downloadTimer);
-        document.getElementById("countdown").innerHTML = "Time is up!"
-    }
-    }, 1000);
+var a4 = ["<button class=buttons002 onclick=q1i()>Boston</button>",
+  "<button class=buttons002 onclick=q2i()>Ireland</button>",
+  "<button class=buttons002 onclick=q3i()>Australia</button>",
+  "<button class=buttons002 onclick=q4c()>Agusta, Georgia</button>"
+];
 
-    console.log(countdown);
-});
+var a5 = ["<button class=buttons002 onclick=q1i()>eight</button>",
+  "<button class=buttons002 onclick=q2i()>twenty-four</button>",
+  "<button class=buttons002 onclick=q3c()>eighteen</button>",
+  "<button class=buttons002 onclick=q4i()>eleven</button>"
+];
 
-golfQuiz.prototype.getCurrentQuestion = function() {
-  return this.questions[this.currentQuestionIndex];
-}
+var n = 0;
+n++;
+var s = 0;
+s++;
 
-golfQuiz.prototype.nextQuestion = function() {
-  this.currentQuestionIndex++;
-}
 
-golfQuiz.prototype.hasEnded = function() {
-  if (this.currentQuestionIndex === this.questions.length)
-    return true;
-}
-
-golfQuiz.prototype.guess = function(guess) {
-  var currentQuestion = this.questions[this.currentQuestionIndex];
-  if (currentQuestion.isCorrect(guess)) {
-    this.score++;
+function timer001() {
+  timerBj();
+  if (c < 20) {
+    timer001.innerHTML = c;
   }
-  this.nextQuestion();
+
+  if (c < 1) {
+    window.clearInterval(update);
+    c = 20;
+    message001.innerHTML = "Time's UP";
+    message002.innerHTML = "";
+    message003.innerHTML = "";
+    message004.innerHTML = "<button class=buttons002 onclick=repeat001()>Repeat</button>";
+
+  }
+
+
+function timer001() {
+  c = c - 1;
+  if (c < 200) {
+      time001.innerHTML = c;
+  }
+
+  if (c < 1) {
+      window.clearInterval(update);
+      message001.innerHTML = "Time's up";
+      message002.innerHTML = "";
+      message003.innerHTML = "";
+      message004.innerHTML = "<button class=buttons002 onclick=repeat001()>Repeat</button>";
+  }
+
+update = setInterval("timer001()", 1000);
+}
 }
 
-// Define question object
-function _question(question, choices, correct) {
-  this.question = question;
-  this.choices = choices;
-  this.correct = correct;
-};
-
-_question.prototype.isCorrect = function(guess) {
-  if (guess === this.correct)
-    return true;
-};
-
-var golfQuizUI = {
-	displayNext : function(){
-		if (golfQuiz.hasEnded())
-			this.displayScore();
-		else{
-			this.displayQuestion();
-			this.displayChoices();
-	}
-},
-
-	displayQuestion: function(){
-		var question = golfQuiz.getCurrentQuestion().question;
-		this.setText("question",question);
-	},
-	displayChoices: function(){
-		var choices = golfQuiz.getCurrentQuestion().choices;
-		for (var i = 0 ; i < choices.length; i++){
-			this.setText("choice"+i , choices[i]);
-			this.guessHandler("guess"+i,i);
-		}
-	},
-	displayScore : function(){
-		var gameOverHTML = "<h1>Game Over</h1>";
-        gameOverHTML += "<h2> Your score is: " + quiz.score + "</h2>";
-        this.setText("quiz", gameOverHTML);
-  },
-  
-	setText: function(id, text) {
-		var element = document.getElementById(id);
-		// innerHTML is a property, not function
-		element.innerHTML = text;
-	},
-	
-	guessHandler : function(id, guess){
-
-		var choiceButton = document.getElementById(id);
-		choiceButton.onclick = function(){
-
-			golfQuiz.guess(guess);
-			golfQuizUI.displayNext();
-		}
-	}
+function begin001() {
+  c = 20;
+  disappear001.innerHTML = "";
+  message001.innerHTML = "";
+  question001.innerHTML = q[0];
+  option001.innerHTML = a1[0];
+  option002.innerHTML = a1[1];
+  option003.innerHTML = a1[2];
+  option004.innerHTML = a1[3];
+  number001.innerHTML = n++;
+  next001.innerHTML = "<button class=buttons001 onclick=new002()>Next</button>";
 }
-var question1 = new _question("Who is the Greatest Golfer of all time?", ["Jack Nicklas", "Tiger Woods", "Brian Jenkins", "Brad Faxon"], 0);
-var question2 = new _question("Where is The Masters held?", ["Scotland", "Ireland", "Texas", "Georgia"], 3);
-var question3 = new _question("How many Major tournaments are there?", ["7", "12", "4", "2"], 2);
-var question4 = new _question("something else?", ["Scotland", "Ireland", "Texas", "Georgia"], 0);
-var question5 = new _question("last question?", ["Scotland", "Ireland", "Texas", "Georgia"], 2);
 
-//scoreText = game.add.text(5, 5, 'Points: 0', { font: '18px Arial', fill: '#0095DD' });
-
-//function correctAnswer() {
-//	currentQuestion.isCorrect();
-//	Score += 5;
-//	scoreText.setText('Points: '+Score);
-//}
-
-
-var golfQuiz = new golfQuiz(
-  [question1, question2, question3, question4, question5]
-);
-golfQuizUI.displayNext();
-
-function queCounter(index){
-  //creating a new span tag and passing the question number and total question
-  let totalQueCounTag = '<span><p>'+ index +'</p> of <p>'+ questions.length +'</p> Questions</span>';
-  bottom_ques_counter.innerHTML = totalQueCounTag;  //adding new span tag inside bottom_ques_counter
+var timeLeft = 20;
+var counter001 = 0;
+var timer001 = '';
+timer001.html(timeLeft - counter);
+function TimeIt() {
+  couner001++;
+  timer001.html(counter0);
 }
+
+
+function q1c() {
+  answer001.innerHTML = "<div id=green001>correct</div>";
+  option001.innerHTML = "";
+  option002.innerHTML = "";
+  option003.innerHTML = "";
+  option004.innerHTML = "";
+  next001.innerHTML = "<button class=buttons001 onclick=new002()>Next</button>";
+  score001.innerHTML = s++;
+}
+
+function q1i() {
+  answer001.innerHTML = "<div id=red001>wrong</div>";
+  option001.innerHTML = "";
+  option002.innerHTML = "";
+  option003.innerHTML = "";
+  option004.innerHTML = "";
+  next001.innerHTML = "<button class=buttons001 onclick=new002()>Next</button>";
+}
+
+function new002() {
+  question001.innerHTML = q[1];
+  option001.innerHTML = a2[0];
+  option002.innerHTML = a2[1];
+  option003.innerHTML = a2[2];
+  option004.innerHTML = a2[3];
+  next001.innerHTML = "";
+  answer001.innerHTML = "";
+  number001.innerHTML = n++;
+  next001.innerHTML = "<button class=buttons001 onclick=new003()>Next</button>";
+
+}
+
+function q2c() {
+  answer001.innerHTML = "<div id=green001>correct</div>";
+  option001.innerHTML = "";
+  option002.innerHTML = "";
+  option003.innerHTML = "";
+  option004.innerHTML = "";
+  next001.innerHTML = "<button class=buttons001 onclick=new003()>Next</button>";
+  score001.innerHTML = s++;
+}
+
+function q2i() {
+  answer001.innerHTML = "<div id=green001>wrong</div>";
+  option001.innerHTML = "";
+  option002.innerHTML = "";
+  option003.innerHTML = "";
+  option004.innerHTML = "";
+  next001.innerHTML = "<button class=buttons001 onclick=new003()>Next</button>";
+}
+
+function new003() {
+  question001.innerHTML = q[2];
+  option001.innerHTML = a3[0];
+  option002.innerHTML = a3[1];
+  option003.innerHTML = a3[2];
+  option004.innerHTML = a3[3];
+  next001.innerHTML = "";
+  answer001.innerHTML = "";
+  number001.innerHTML = n++;
+}
+
+function q3c() {
+  answer001.innerHTML = "<div id=green001>correct</div>";
+  option001.innerHTML = "";
+  option002.innerHTML = "";
+  option003.innerHTML = "";
+  option004.innerHTML = "";
+  next001.innerHTML = "<button class=buttons001 onclick=new004()>Next</button>";
+  score001.innerHTML = s++;
+}
+
+function q3i() {
+  answer001.innerHTML = "<div id=red001>wrong</div>";
+  option001.innerHTML = "";
+  option002.innerHTML = "";
+  option003.innerHTML = "";
+  option004.innerHTML = "";
+  next001.innerHTML = "<button class=buttons001 onclick=new004()>Next</button>";
+}
+
+function new004() {
+  question001.innerHTML = q[3];
+  option001.innerHTML = a4[0];
+  option002.innerHTML = a4[1];
+  option003.innerHTML = a4[2];
+  option004.innerHTML = a4[3];
+  next001.innerHTML = "";
+  answer001.innerHTML = "";
+  number001.innerHTML = n++;
+  next001.innerHTML = "<button class=buttons001 onclick=new004()>Next</button>";
+
+}
+
+function q4c() {
+  answer001.innerHTML = "<div id=green001>correct</div>";
+  option001.innerHTML = "";
+  option002.innerHTML = "";
+  option003.innerHTML = "";
+  option004.innerHTML = "";
+  next001.innerHTML = "<button class=buttons001 onclick=new005()>Next</button>";
+  score001.innerHTML = s++;
+}
+
+function q4i() {
+  answer001.innerHTML = "<div id=red001>wrong</div>";
+  option001.innerHTML = "";
+  option002.innerHTML = "";
+  option003.innerHTML = "";
+  option004.innerHTML = "";
+  next001.innerHTML = "<button class=buttons001 onclick=new005()>Next</button>";
+}
+
+function new005() {
+  question001.innerHTML = q[4];
+  option001.innerHTML = a5[0];
+  option002.innerHTML = a5[1];
+  option003.innerHTML = a5[2];
+  option004.innerHTML = a5[3];
+  next001.innerHTML = "";
+  answer001.innerHTML = "";
+  number001.innerHTML = n++;
+  next001.innerHTML = "<button class=buttons001 onclick=end001()>End of Quiz</button>";
+}
+
+function q5c() {
+  answer001.innerHTML = "<div id=green001>correct</div>";
+  option001.innerHTML = "";
+  option002.innerHTML = "";
+  option003.innerHTML = "";
+  option004.innerHTML = "";
+  next001.innerHTML = "<button class=buttons001 onclick=end001()>End of Quiz</button>";
+  score001.innerHTML = s++;
+}
+
+function q5i() {
+  answer001.innerHTML = "<div id=red001>wrong</div>";
+  option001.innerHTML = "";
+  option002.innerHTML = "";
+  option003.innerHTML = "";
+  option004.innerHTML = "";
+  number001.innerHTML = n++;
+  next001.innerHTML = "<button class=buttons001 onclick=end001()>End of Quiz</button>";
+}
+
+function end001() {
+  window.clearInterval(update);
+  c = "-";
+  message001.innerHTML = "End of Quiz.";
+  question001.innerHTML = "";
+  option001.innerHTML = "";
+  option002.innerHTML = "";
+  option003.innerHTML = "";
+  option004.innerHTML = "";
+  next001.innerHTML = "<div id=text001>" + "<button class=buttons001 onclick=repeat001()>Repeat</button>" + "</div>";
+  answer001.innerHTML = "";
+}
+
+function repeat001() {
+  location.reload();
+}
+
