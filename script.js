@@ -7,63 +7,63 @@
   var timer;
   var timerCount;
 
-  // var questions = [
-  //   {
-  //     q: "what is this?",
-  //     a: [
-  //       "right answer", value = "1",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //     ]
-  //   },
-  //   {
-  //     q: "Question 2",
-  //     a: [
-  //       "right answer", value = "1",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //     ]
-  //   },
-  //   {
-  //     q: "Question 3",
-  //     a: [
-  //       "right answer", value = "1",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //     ]
-  //   },
-  //   {
-  //     q: "Question 4",
-  //     a: [
-  //       "right answer", value = "1",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //     ]
-  //   },
-  //   {
-  //     q: "Question 5",
-  //     a: [
-  //       "right answer", value = "1",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //     ]
-  //   },
-  //   {
-  //     q: "Question 6",
-  //     a: [
-  //       "right answer", value = "1",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //       "nope", value = "0",
-  //     ]
-  //   },
+  var questions = [
+    {
+      q: "what is this?",
+      a: [
+        "right answer", value = "1",
+        "nope", value = "0",
+        "nope", value = "0",
+        "nope", value = "0",
+      ]
+    },
+    {
+      q: "Question 2",
+      a: [
+        "right answer", value = "1",
+        "nope", value = "0",
+        "nope", value = "0",
+        "nope", value = "0",
+      ]
+    },
+    {
+      q: "Question 3",
+      a: [
+        "right answer", value = "1",
+        "nope", value = "0",
+        "nope", value = "0",
+        "nope", value = "0",
+      ]
+    },
+    {
+      q: "Question 4",
+      a: [
+        "right answer", value = "1",
+        "nope", value = "0",
+        "nope", value = "0",
+        "nope", value = "0",
+      ]
+    },
+    {
+      q: "Question 5",
+      a: [
+        "right answer", value = "1",
+        "nope", value = "0",
+        "nope", value = "0",
+        "nope", value = "0",
+      ]
+    },
+    {
+      q: "Question 6",
+      a: [
+        "right answer", value = "1",
+        "nope", value = "0",
+        "nope", value = "0",
+        "nope", value = "0",
+      ]
+    },
 
-  // ];
+  ];
 
   var questions = [];
   var ansers = ["variable", "array", "modulus", "object", "function", "string", "boolean"];
@@ -74,7 +74,7 @@
   scoreCounter = 0;
   setScore()
   function setScore() {
-    score.textContent = scoreCounter;
+    win.textContent = scoreCounter;
     localStorage.setItem("scoreCount", scoreCounter);
   }
 
@@ -83,8 +83,11 @@
     timer = setInterval(function () {
       timerCount--;
       timerElement.textContent = timerCount;
-
-      if (timerCount === 0)
+      if (timerCount >= 0) {
+        count++;
+      }
+      // Tests if time has run out
+      else (timerCount === 0)
         // Clears interval
         clearInterval(timer);
         loseGame();
@@ -92,9 +95,12 @@
     , 1000);
   }
 
+
+  // The startGame function is called when the start button is clicked
   function startGame() {
     timerCount = 20;
-    startButton.disabled = true;
+    // Prevents start button from being clicked when round is in progress
+    startButton.disabled = false;
     startTimer()
   }
 
