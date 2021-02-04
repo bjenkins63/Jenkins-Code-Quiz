@@ -12,14 +12,21 @@ function startTimer() {
     timerElement.textContent = timerCount;
     if (timerCount === 0) {
       clearInterval(timer);
+      var customerName = prompt("Please enter your initials", "");
+    if (customerName!= null) {
+    document.getElementById("initials").value = customerName;
+}
+    //   prompt("Nice Job! Record your score", "<initials here>");
+      //.empty("quizwrap") and bring up box with score and ask for initials
     }
   }, 1000);
 }
 
-// function begin01() {
-//   timerCount = 20;
-//   startTimer()
-// }
+
+
+
+
+
 
 
 var q = ["If you score a 3 on a par 4, what did you make?<br /><br />", "How many holes on a regulation golf course?<br /><br />", "Who plays first?<br /><br />", "If you score a 6 on a par 5, what did you make?<br /><br />", "How many clubs can you have in your bag?<br /><br />", "Who holds the record for most Major tournament victories?<br /><br />", "where is the Masters Tournament held?<br /><br />", "What does it mean when you score an eagle?<br /><br />", "When can you mark your ball and pick it up?<br /><br />", "What is a mulligan?<br /><br />"];
