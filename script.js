@@ -3,14 +3,14 @@ var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
 
 var timer;
-var timerCount = 20;
+var timerCount = 18;
 
 
 function startTimer() {
   timer = setInterval(function () {
     timerCount--;
     timerElement.textContent = timerCount;
-    if (timerCount === 0) {
+    if (timerCount == 0) {
       clearInterval(timer);
       var customerName = prompt("Please enter your initials", "");
     if (customerName!= null) {
