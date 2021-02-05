@@ -17,6 +17,10 @@
 <body>
     <header>
         <div class="large-font">Golf Quiz</div>
+        Score: <text id="score001">0</text> </div>
+
+        <p>High Scores</p><br>
+        <p  id="initials"></p>
     </header>
 
     <main>
@@ -26,31 +30,35 @@
                     <div class="row">
                         <div class="col">
                             Question: <text id="number001">0</text><br />
-                            Score: <text id="score001">0</text> </div>
-                        <div class="col">
-                            Time:<div class="large-font timer-count">18</div>
+                            <div class="col">
+                                Time:<div class="large-font timer-count">27</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="message001">
+                        <h4>Click to start</h4>
+                    </div>
+                    <div id="text002">
+                        <div id="question001"></div>
+                        <div class="row">
+                            <div class="col">
+                                <div id="option001"></div>
+                                <div id="option002"></div>
+                            </div>
+                            <div class="col">
+                                <div id="option003"></div>
+                                <div id="option004"></div>
+                            </div>
+                            <div id="answer001"></div>
+                            <div id="text001">
+                                <div id="disappear001"><button class="buttons001" onclick="begin001(), startTimer()">TeeOff!</button></div>
+                            </div>
+                            <div id="next001"></div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div id="message001"><h4>Click to start</h4>
-            </div>
-            <div id="text002">
-                <div id="question001"></div>
-                <div id="option001"></div>
-                <div id="option002"></div>
-                <div id="option003"></div>
-                <div id="option004"></div>
-                <div id="answer001"></div>
-                <div id="text001">
-                    <div id="disappear001"><button class="buttons001" onclick="begin001(), startTimer()">Tee
-                            Off!</button></div>
-                </div>
-                <div id="next001"></div>
-            </div>
-            <!-- <input type="text" id="customerName" /> -->
-            </div>
         </section>
-
 
     </main>
 
